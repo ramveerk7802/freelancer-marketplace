@@ -1,11 +1,10 @@
 package com.rvcode.freelancerMarketplace.register_login;
 
 
-import com.rvcode.freelancerMarketplace.freelancer_profile.FreelancerProfile;
+import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor

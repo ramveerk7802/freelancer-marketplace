@@ -2,12 +2,11 @@ package com.rvcode.freelancerMarketplace.user.model;
 
 
 import com.rvcode.freelancerMarketplace.common.util.Role;
-import com.rvcode.freelancerMarketplace.freelancer_profile.FreelancerProfile;
+import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
@@ -35,7 +34,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private FreelancerProfile freelancerProfile;
 
 }

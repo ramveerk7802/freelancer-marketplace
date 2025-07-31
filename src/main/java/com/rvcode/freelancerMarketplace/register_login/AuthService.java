@@ -4,14 +4,12 @@ package com.rvcode.freelancerMarketplace.register_login;
 import com.rvcode.freelancerMarketplace.common.exception.MyCustomException;
 import com.rvcode.freelancerMarketplace.common.exception.UserExistence;
 import com.rvcode.freelancerMarketplace.common.util.Role;
-import com.rvcode.freelancerMarketplace.freelancer_profile.FreelancerProfile;
+import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
 import com.rvcode.freelancerMarketplace.user.UserRepository;
 import com.rvcode.freelancerMarketplace.user.dto.UserDTO;
 import com.rvcode.freelancerMarketplace.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class AuthService {
@@ -34,13 +32,8 @@ public class AuthService {
 
             // if user is register as Freelancer
             if(registerRequest.getRole().equalsIgnoreCase(Role.FREELANCER.name())){
-                if(registerRequest.getFreelancerProfile()==null)
-                    throw new MyCustomException("Enter the Freelancer profile detail");
                 role = Role.FREELANCER;
-                FreelancerProfile profile = FreelancerProfile.builder()
-                        .skills(registerRequest.getFreelancerProfile().getSkills())
-                        .users(myUser)
-                        .build();
+                myUser.setFreelancerProfile(new FreelancerProfile());
             }
             myUser.setRole(role);
             User savedUser = userRepository.save(myUser);
