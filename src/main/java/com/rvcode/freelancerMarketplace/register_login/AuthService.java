@@ -3,6 +3,7 @@ package com.rvcode.freelancerMarketplace.register_login;
 
 import com.rvcode.freelancerMarketplace.common.exception.MyCustomException;
 import com.rvcode.freelancerMarketplace.common.exception.UserExistence;
+import com.rvcode.freelancerMarketplace.common.jwt_util.JwtService;
 import com.rvcode.freelancerMarketplace.common.util.Role;
 import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
 import com.rvcode.freelancerMarketplace.user.UserRepository;
@@ -16,6 +17,9 @@ public class AuthService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JwtService jwtService;
 
     public UserDTO registerUser(RegisterRequest registerRequest){
         try {
@@ -37,7 +41,9 @@ public class AuthService {
             }
             myUser.setRole(role);
             User savedUser = userRepository.save(myUser);
-            return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), savedUser.getRole().name(),savedUser.getFreelancerProfile());
+
+            String token = jwtService.generateToken(savedUser);
+            return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), savedUser.getRole().name(),savedUser.getFreelancerProfile(),token);
         }catch (Exception e){
             throw e;
         }
@@ -54,7 +60,8 @@ public class AuthService {
 
             if(!dbUser.getPassword().equals(loginRequest.getPassword()))
                 throw new UserExistence("Enter the valid credential");
-            return new UserDTO(dbUser.getId(), dbUser.getUsername(), dbUser.getEmail(),dbUser.getRole().name(), dbUser.getFreelancerProfile() );
+            String token = jwtService.generateToken(dbUser);
+            return new UserDTO(dbUser.getId(), dbUser.getUsername(), dbUser.getEmail(),dbUser.getRole().name(), dbUser.getFreelancerProfile() ,token);
         }catch (Exception e) {
             throw  e;
         }

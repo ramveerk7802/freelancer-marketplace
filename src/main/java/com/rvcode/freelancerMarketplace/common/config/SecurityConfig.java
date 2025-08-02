@@ -38,7 +38,6 @@ public class SecurityConfig {
                         request.requestMatchers("/api/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 )
-//                .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sm->
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
