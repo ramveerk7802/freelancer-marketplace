@@ -34,8 +34,8 @@ public class FreelancerProfile {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "freelancer_certifications", joinColumns = @JoinColumn(name = "profile_id")) // Use a different table name
-    @Column(name = "certification")
-    private Set<String> certifications;
+    @Column(name = "certificates")
+    private Set<String> certificates;
 
     private String location;
 

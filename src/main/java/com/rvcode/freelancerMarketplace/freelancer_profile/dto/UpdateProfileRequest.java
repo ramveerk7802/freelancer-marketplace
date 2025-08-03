@@ -13,7 +13,7 @@ public class UpdateProfileRequest {
     private String bio;
     private Set<String> skills;
     private int yearOfExperience;
-    private Set<String> certifications;
+    private Set<String> certificates;
     private String location;
     private String profilePictureUrl;
     private boolean isVerified;

@@ -20,11 +20,10 @@ public class FreelancerProfileController {
 
     private final FreelancerProfileService freelancerProfileService;
 
-    @GetMapping("/me")
     @PreAuthorize("hasRole('FREELANCER')")
+    @GetMapping("/me")
     public ResponseEntity<?> getMyProfile(@AuthenticationPrincipal CustomUserDetail customUserDetail){
-        String  email = customUserDetail.getUsername();
-        return ResponseEntity.ok(freelancerProfileService.getMyProfile(email));
+        return ResponseEntity.ok(freelancerProfileService.getMyProfile(customUserDetail));
 
     }
 

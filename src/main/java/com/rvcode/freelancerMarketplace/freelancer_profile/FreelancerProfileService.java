@@ -1,6 +1,7 @@
 package com.rvcode.freelancerMarketplace.freelancer_profile;
 
 
+import com.rvcode.freelancerMarketplace.common.CustomUserDetail;
 import com.rvcode.freelancerMarketplace.common.exception.MyCustomException;
 import com.rvcode.freelancerMarketplace.common.exception.UserExistence;
 import com.rvcode.freelancerMarketplace.freelancer_profile.dto.UpdateProfileRequest;
@@ -19,10 +20,14 @@ public class FreelancerProfileService {
 
 
     @Transactional(readOnly = true)
-    public FreelancerProfile getMyProfile(String email){
+    public FreelancerProfile getMyProfile(CustomUserDetail customUserDetail){
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(()-> new UserExistence("User not found with email: "+ email));
+            String email = customUserDetail.getUsername(); // ✅ fix here
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new UserExistence("User not found with email: " + email));
+
             return user.getFreelancerProfile();
+
 
 
 
@@ -37,14 +42,12 @@ public class FreelancerProfileService {
         try {
             User user = userRepository.findByEmail(email).orElseThrow(() -> new UserExistence("User not found with email: " + email));
             FreelancerProfile profile = user.getFreelancerProfile();
-//            if (profile == null) {
-//                throw new MyCustomException("Entity not found exception");
-//            }
+
             profile.setBio(request.getBio());
             profile.setProfilePictureUrl(request.getProfilePictureUrl());
             profile.setSkills(request.getSkills());
             profile.setHeadline(request.getHeadline());
-            profile.setCertifications(request.getCertifications());
+            profile.setCertificates(request.getCertificates());
             profile.setVerified(request.isVerified());
             profile.setYearOfExperience(request.getYearOfExperience());
             profile.setLocation(request.getLocation());
