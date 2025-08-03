@@ -31,7 +31,7 @@ public class JwtService {
         extraClaims.put("role",user.getRole().name());
         return Jwts.builder()
                 .claims(extraClaims)
-                .subject(user.getUsername())
+                .subject(user.getEmail())
                 .issuer("rvcode")
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis()+EXPIRE_TIME))

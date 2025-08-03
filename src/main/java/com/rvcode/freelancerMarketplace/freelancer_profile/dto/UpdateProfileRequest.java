@@ -4,18 +4,16 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
-public class FreelancerProfileDTO {
-    private Long profileId;
-    private Long userId;
+public class UpdateProfileRequest {
     private String headline;
     private String bio;
-    private List<String> skills;
-    private int yearsOfExperience;
-    private List<String> certifications;
-    private String portfolio;
+    private Set<String> skills;
+    private int yearOfExperience;
+    private Set<String> certifications;
     private String location;
     private String profilePictureUrl;
     private boolean isVerified;
