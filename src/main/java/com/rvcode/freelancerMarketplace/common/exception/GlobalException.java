@@ -33,4 +33,13 @@ public class GlobalException {
     public ResponseEntity<ErrorResponse> MyCustomNullException(MyCustomException e){
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage(),HttpStatus.BAD_REQUEST,LocalDateTime.now()));
     }
+
+
+    @ExceptionHandler(CustomInformationException.class)
+    public ResponseEntity<?> handleCustomInformationException(CustomInformationException e){
+        Map<String,Object> body = new HashMap<>();
+        body.put("timeStamp",LocalDateTime.now());
+        body.put("message",e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(body);
+    }
 }

@@ -2,7 +2,6 @@ package com.rvcode.freelancerMarketplace.freelancer_profile;
 
 
 import com.rvcode.freelancerMarketplace.common.CustomUserDetail;
-import com.rvcode.freelancerMarketplace.common.exception.MyCustomException;
 import com.rvcode.freelancerMarketplace.common.exception.UserExistence;
 import com.rvcode.freelancerMarketplace.freelancer_profile.dto.UpdateProfileRequest;
 import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
@@ -22,15 +21,11 @@ public class FreelancerProfileService {
     @Transactional(readOnly = true)
     public FreelancerProfile getMyProfile(CustomUserDetail customUserDetail){
         try {
-            String email = customUserDetail.getUsername(); // ✅ fix here
+            String email = customUserDetail.getUsername();
             User user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new UserExistence("User not found with email: " + email));
 
             return user.getFreelancerProfile();
-
-
-
-
         }catch (Exception e){
             throw e;
         }

@@ -6,6 +6,7 @@ import com.rvcode.freelancerMarketplace.common.jwt_util.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,7 +39,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request->
                         request.requestMatchers("/api/auth/**").permitAll()
-//                                .requestMatchers("/api/user/profile/**").hasRole("FREELANCER")
+                                .requestMatchers(HttpMethod.GET,"/api/projects/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sm->

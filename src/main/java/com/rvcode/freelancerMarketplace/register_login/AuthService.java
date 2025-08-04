@@ -38,6 +38,7 @@ public class AuthService {
             User myUser = new User();
             myUser.setEmail(registerRequest.getEmail());
             myUser.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+            myUser.setName(registerRequest.getName());
 
             // if user is register as Freelancer
             if(registerRequest.getRole().equalsIgnoreCase(Role.FREELANCER.name())){
