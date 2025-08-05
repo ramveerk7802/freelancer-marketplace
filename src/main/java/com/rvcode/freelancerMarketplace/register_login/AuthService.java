@@ -1,17 +1,16 @@
 package com.rvcode.freelancerMarketplace.register_login;
 
 
-import com.rvcode.freelancerMarketplace.common.exception.MyCustomException;
 import com.rvcode.freelancerMarketplace.common.exception.UserExistence;
 import com.rvcode.freelancerMarketplace.common.jwt_util.JwtService;
 import com.rvcode.freelancerMarketplace.common.util.Role;
 import com.rvcode.freelancerMarketplace.freelancer_profile.FreelancerProfileRepository;
 import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
+import com.rvcode.freelancerMarketplace.register_login.request_dto.LoginRequest;
+import com.rvcode.freelancerMarketplace.register_login.request_dto.RegisterRequest;
 import com.rvcode.freelancerMarketplace.user.UserRepository;
-import com.rvcode.freelancerMarketplace.user.dto.UserDTO;
 import com.rvcode.freelancerMarketplace.user.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

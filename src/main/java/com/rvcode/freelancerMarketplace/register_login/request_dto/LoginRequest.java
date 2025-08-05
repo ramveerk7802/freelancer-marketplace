@@ -1,4 +1,4 @@
-package com.rvcode.freelancerMarketplace.register_login;
+package com.rvcode.freelancerMarketplace.register_login.request_dto;
 
 
 import lombok.*;

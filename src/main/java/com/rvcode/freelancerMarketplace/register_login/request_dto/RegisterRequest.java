@@ -1,7 +1,6 @@
-package com.rvcode.freelancerMarketplace.register_login;
+package com.rvcode.freelancerMarketplace.register_login.request_dto;
 
 
-import com.rvcode.freelancerMarketplace.freelancer_profile.model.FreelancerProfile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
