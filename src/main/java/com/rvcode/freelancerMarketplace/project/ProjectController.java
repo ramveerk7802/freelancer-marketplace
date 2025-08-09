@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/projects")
@@ -20,9 +21,9 @@ public class ProjectController {
     private final ProjectService projectService;
 
 
-    @GetMapping("/test")
+    @GetMapping("/health")
     public ResponseEntity<?> test() {
-        return ResponseEntity.ok("Test passed");
+        return ResponseEntity.ok(Map.of("message", "Project controller health okk"));
     }
 
 

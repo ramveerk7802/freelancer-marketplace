@@ -42,4 +42,13 @@ public class GlobalException {
         body.put("message",e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(body);
     }
+
+
+    @ExceptionHandler(ProjectNotFoundException.class)
+    public ResponseEntity<?> handleProjectNotFoundException(ProjectNotFoundException e){
+        Map<String,Object> body = new HashMap<>();
+        body.put("timeStamp",LocalDateTime.now());
+        body.put("message",e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
 }
