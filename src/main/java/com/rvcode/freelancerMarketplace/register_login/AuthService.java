@@ -72,7 +72,7 @@ public class AuthService {
             User dbUser = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(()-> new UserExistence("Enter valid credential"));
 
             String token = jwtService.generateToken(dbUser);
-            return AuthResponse.builder().token(token).build();
+            return AuthResponse.builder().token(token).role(dbUser.getRole().name()).build();
 //            return new UserDTO(dbUser.getId(), dbUser.getUsername(), dbUser.getEmail(),dbUser.getRole().name(), dbUser.getFreelancerProfile() ,token);
         }catch (Exception e) {
             throw  e;
